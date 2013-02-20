@@ -30,9 +30,14 @@ public class Help extends Activity {
         helppage.loadUrl("file:\\mnt\\extsd\\Instructions\\proxyMITY_help.html");
 		}
         
-        else
+        else if(new File("/mnt/sdcard/Instructions/proxyMITY_help.html").exists())
         {
         	  helppage.loadUrl("file:\\mnt\\sdcard\\Instructions\\proxyMITY_help.html");
+        }
+        
+        else
+        {
+        	helppage.loadUrl("file:///android_asset/proxyMITY_help.html");	
         }
        /* String customHtml = "<html><body><h1>Hello, WebView I m AJAY</h1></body></html>";
         

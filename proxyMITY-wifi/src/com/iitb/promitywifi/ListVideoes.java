@@ -174,14 +174,14 @@ else{
 			+"\n"+"		2.1 Select Menu button"
 			+"\n"+"		2.2 you will see 2 options WiFi Setting and Help"
 			+"\n"+"		2.3 Select WiFi settings option and then enter the correct IP "
-			+"\n"+"			addrses of the server"
+			+"\n"+"			address of the server"
 	+"\n"+"\n"+"3. Check whether there are proxyMITY videos present in your server")
 	
 	       .setCancelable(false)
 	       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 	           public void onClick(DialogInterface dialog, int id) {
 	        	
-	        	   ListVideoes.this.finish();
+	        	  // ListVideoes.this.finish();
 	        	
 	           }
 	       });

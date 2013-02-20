@@ -2,6 +2,8 @@ package com.iitb.promitywifi;
 
 
 
+import java.io.File;
+
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -21,8 +23,22 @@ public class Help extends Activity {
         helppage = (WebView) findViewById(R.id.helpwebView);
         helppage.getSettings().setJavaScriptEnabled(true);
         //helppage.loadUrl("file:///android_asset/help.html");
+if (new File("/mnt/extsd/Instructions/proxyMITY_wifi_help.html").exists())
+    		
+		{    
+	  helppage.loadUrl("file:\\mnt\\extsd\\Instructions\\proxyMITY_wifi_help.html");
+		}
         
-       helppage.loadUrl("file:\\mnt\\extsd\\Instructions\\proxyMITY_wifi_help.html");
+        else if(new File("/mnt/sdcard/Instructions/proxyMITY_wifi_help.html").exists())
+        {
+        	  helppage.loadUrl("file:\\mnt\\sdcard\\Instructions\\proxyMITY_wifi_help.html");
+        }
+        
+        else
+        {
+        	helppage.loadUrl("file:///android_asset/proxyMITY_wifi_help.html");	
+        }    
+     
         
     }
 

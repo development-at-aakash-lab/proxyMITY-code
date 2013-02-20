@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <EditTextPreference
+                android:key="cameraStreamURL"
+                android:title="@string/camera_stream_URL"
+				android:defaultValue="@string/default_stream_URL"
+                android:summary="@string/default_stream_URL"
+                android:dialogTitle="@string/enter_stream_url" />
+       </PreferenceScreen>

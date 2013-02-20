@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<item android:id="@+id/srt"
+		android:title="Choose Subtitle"
+		android:background="@android:color/transparent"
+		android:icon="@drawable/star_none" />
+	
+	<item android:id="@+id/bookmark"
+		android:title="BookMark"
+		android:background="@android:color/transparent"
+		android:icon="@drawable/star_none" />
+
+</menu>

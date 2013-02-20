@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, ListVideoes!</string>
+    <string name="app_name">proxyMITY-Wifi 1.0</string>
+    <string name="camera_stream_URL">IP Address of Server</string>
+    <string name="enter_stream_url">Enter IP Address of Server</string>
+    <string name="default_stream_URL">10.2.241.79</string>
+    <string name="settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_help">Help</string>
+
+</resources>

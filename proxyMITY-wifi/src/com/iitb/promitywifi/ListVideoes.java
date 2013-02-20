@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.ivy.util.url.ApacheURLLister;
+
+
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -56,8 +58,8 @@ public class ListVideoes extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listvideoes);
 		ACTIVITY = this;
-		RESTART_INTENT = PendingIntent.getActivity(this.getBaseContext(), 0,
-				new Intent(getIntent()), getIntent().getFlags());
+		//RESTART_INTENT = PendingIntent.getActivity(this.getBaseContext(), 0,
+			//	new Intent(getIntent()), getIntent().getFlags());
 		edittext = (EditText) findViewById(R.id.EditText01);
 		lv = (ListView) findViewById(R.id.listView1);
 		PreferenceManager.setDefaultValues(this, R.xml.settings, false);
@@ -76,11 +78,11 @@ public class ListVideoes extends Activity {
 							|| dg.contains(".MP4") || dg.contains(".3GP")) {
 						String dg1 = dg.substring(videopath.length(),
 								dg.length());
-						String dg2 = dg1.replaceAll("%20", " ");
+						String dg2 = dg1.replaceAll("%20", "");
 						int j = dg2.lastIndexOf('.');
 						ext = dg2.substring(j, dg2.length());
 						System.out.println(ext);
-						String dg3 = dg2.replaceAll(ext, "");
+						String dg3 = dg2.replaceAll(ext, " ");
 						files.add(dg3);
 					}
 				}
@@ -108,6 +110,9 @@ public class ListVideoes extends Activity {
 			AlertDialog alertDialog = alertDialogBuilder.create();
 			alertDialog.show();
 		}
+if (list.size()!=0)
+{
+	
 
 		ArrayAdapter<String> directoryList = new ArrayAdapter<String>(
 				ListVideoes.this, R.layout.videorow, R.id.title, files);
@@ -157,8 +162,35 @@ public class ListVideoes extends Activity {
 
 			}
 		});
-	}
 
+		}
+
+else{
+	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	builder.setIcon(R.drawable.proxy);
+	builder.setTitle("proxyMITY videos are not listed in the tablet!!!");
+	builder.setMessage(	"1. Please check whether Wi-Fi is enabled on the tablet "+"\n"
+        	+"\n"+"2. Check whether you have correctly entered the IP address of your server "
+			+"\n"+"		2.1 Select Menu button"
+			+"\n"+"		2.2 you will see 2 options WiFi Setting and Help"
+			+"\n"+"		2.3 Select WiFi settings option and then enter the correct IP "
+			+"\n"+"			addrses of the server"
+	+"\n"+"\n"+"3. Check whether there are proxyMITY videos present in your server")
+	
+	       .setCancelable(false)
+	       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+	           public void onClick(DialogInterface dialog, int id) {
+	        	
+	        	   ListVideoes.this.finish();
+	        	
+	           }
+	       });
+	AlertDialog alert = builder.create();   
+	alert.show();
+
+
+}
+	}
 	public boolean validate_ip(final String ip) {
 		Pattern pattern = Pattern.compile(IPADDRESS_PATTERN);
 		Matcher matcher = pattern.matcher(ip);

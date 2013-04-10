@@ -35,6 +35,10 @@ public class Help extends Activity {
         	  helppage.loadUrl("file:\\mnt\\sdcard\\Instructions\\proxyMITY_help.html");
         }
         
+        else if(new File ("/mnt/external_sd/Instructions/proxyMITY_help.html").exists())
+        {
+      	  helppage.loadUrl("file:\\mnt\\external_sd\\Instructions\\proxyMITY_help.html");
+        }
         else
         {
         	helppage.loadUrl("file:///android_asset/proxyMITY_help.html");	

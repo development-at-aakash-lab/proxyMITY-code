@@ -58,8 +58,8 @@ public class ListVideoes extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listvideoes);
 		ACTIVITY = this;
-		//RESTART_INTENT = PendingIntent.getActivity(this.getBaseContext(), 0,
-			//	new Intent(getIntent()), getIntent().getFlags());
+		RESTART_INTENT = PendingIntent.getActivity(this.getBaseContext(), 0,
+				new Intent(getIntent()), getIntent().getFlags());
 		edittext = (EditText) findViewById(R.id.EditText01);
 		lv = (ListView) findViewById(R.id.listView1);
 		PreferenceManager.setDefaultValues(this, R.xml.settings, false);
@@ -74,17 +74,17 @@ public class ListVideoes extends Activity {
 				list = lister1.listFiles(url1);
 				for (int i = 0; i < list.size(); i++) {
 					String dg = list.get(i).toString();
-					if (dg.contains(".mp4") || dg.contains(".3gp")
-							|| dg.contains(".MP4") || dg.contains(".3GP")) {
+					/*if (dg.contains(".mp4") || dg.contains(".3gp")
+							|| dg.contains(".MP4") || dg.contains(".3GP")) {*/
 						String dg1 = dg.substring(videopath.length(),
 								dg.length());
-						String dg2 = dg1.replaceAll("%20", "");
+						String dg2 = dg1.replaceAll("%20", " ");
 						int j = dg2.lastIndexOf('.');
 						ext = dg2.substring(j, dg2.length());
 						System.out.println(ext);
 						String dg3 = dg2.replaceAll(ext, " ");
 						files.add(dg3);
-					}
+					//}
 				}
 
 			} catch (Exception e) {

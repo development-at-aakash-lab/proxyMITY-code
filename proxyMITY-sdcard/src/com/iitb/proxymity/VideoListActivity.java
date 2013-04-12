@@ -36,6 +36,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +61,7 @@ public class VideoListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.videolistactivity);
 		File list=new File("/mnt/extsd/proxyMITY/video/");
-		checkTar = new File("/mnt/sdcard/apl.tar.gz");
+		checkTar = new File("/mnt/sdcard/proxyMITY.zip");
 		if (list.exists()||new File("/mnt/sdcard/proxyMITY/video/").exists()||new File ("/mnt/external_sd/proxyMITY/video/").exists())
 		
 		{
@@ -137,9 +138,24 @@ public class VideoListActivity extends Activity {
            
             btnNO.setOnClickListener(new OnClickListener() {
             	public void onClick(View v) {
-            		finish();
-                    	android.os.Process
-                    	.killProcess(android.os.Process.myPid());
+            		
+            		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                	builder.setIcon(R.drawable.proxy);
+                	builder.setTitle("proxyMITY videos are not present in the tablet!!!");
+                	builder.setMessage(	"Store the lecture videos at any one of the"+"\n"
+                	+"following locations"+"\n"+"\n"+"1. mnt/sdcard/proxyMITY"
+                			+"\n"+"2. mnt/extsd/proxyMITY")
+                	
+                	       .setCancelable(false)
+                	       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                	           public void onClick(DialogInterface dialog, int id) {
+                	        	
+                	        	   VideoListActivity.this.finish();
+                	        	
+                	           }
+                	       });
+                	AlertDialog alert = builder.create();   
+                	alert.show();
                 }	
             });	
           
@@ -241,7 +257,7 @@ public class VideoListActivity extends Activity {
     	/**
     	 * global github link for downloading image
     	 **/
-    	String url = "http://aakashlabs.org/builds/apl.tar.gz";
+    	String url = "http://www.it.iitb.ac.in/AakashApps/repo/proxyMITY.zip";
     	new DownloadFileAsync().execute(url);
     }    
 	
@@ -329,11 +345,15 @@ public class VideoListActivity extends Activity {
 	        progressBar.setMessage("Extracting files, please wait...");
 	        progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 	        progressBar.show();
-	        String zipFile = Environment.getExternalStorageDirectory() + "/files.zip"; 
-	        String unzipLocation = Environment.getExternalStorageDirectory() + "/proxyMITY/"; 
-	         
+	        String zipFile = Environment.getExternalStorageDirectory() + "/proxyMITY.zip"; 
+	        String unzipLocation = Environment.getExternalStorageDirectory()+"/"; 
+	        new File("mnt/sdcard/proxyMITY").mkdir();
+	        new File("mnt/sdcard/proxyMITY/video").mkdir();
+	        new File("mnt/sdcard/proxyMITY/xml").mkdir();
+	        
 	        Decompress d = new Decompress(zipFile, unzipLocation); 
 	        d.unzip(); 
+	      //  Toast.makeText(context, "unzipped", Toast.LENGTH_SHORT).show();
 	        
 	       
 	    }
@@ -359,7 +379,7 @@ public class VideoListActivity extends Activity {
 
 	                InputStream input = new BufferedInputStream(url.openStream());
 	                OutputStream output = new FileOutputStream(
-	                        "/mnt/sdcard/apl.tar.gz");
+	                        "/mnt/sdcard/proxyMITY.zip");
 
 	                byte data[] = new byte[1024];
 
@@ -388,7 +408,32 @@ public class VideoListActivity extends Activity {
 	        	help_dialog.dismiss();
 	        	if (checkTar.exists()){
 	        		spinner();
+	        		
 	        	}
+	        	  new Thread() {
+	        		    public void run() {
+	        		        try{
+	        		            // just doing some long operation
+	        		            Thread.sleep(10000);
+	        		         } catch (Exception e) {  }
+	        		           // handle the exception somehow, or do nothing
+	        		         
+
+	        		         // run code on the UI thread
+	        		        runOnUiThread(new Runnable() {
+
+	        		            public void run() {
+	        		                progressBar.dismiss();
+	        		                Intent intent = getIntent();
+	       	        		     finish();
+	       	        		     startActivity(intent);
+	        		            }
+	        		        });
+	        		    }
+	        		     }.start();
+	        		     
+	        		    
+	       // 	progressBar.dismiss();
 	        	
 	    }
 	        //delete internal files during un-installation 

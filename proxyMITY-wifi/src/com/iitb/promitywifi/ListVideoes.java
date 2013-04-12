@@ -66,7 +66,7 @@ public class ListVideoes extends Activity {
 		settings = PreferenceManager.getDefaultSharedPreferences(this);
 		ip_address = settings.getString("cameraStreamURL", "<doesnt-exist>");
 		if (validate_ip(ip_address)) {
-			videopath = "http://" + ip_address + "/videos/";
+			videopath = "http://" + ip_address + "/video/";
 
 			try {
 				url1 = new URL(videopath);

@@ -14,12 +14,14 @@ import java.util.zip.ZipInputStream;
 public class Decompress { 
   private String _zipFile; 
   private String _location; 
+  byte[] buffer = new byte[1024];
+  int length;
  
   public Decompress(String zipFile, String location) { 
     _zipFile = zipFile; 
     _location = location; 
  
-    _dirChecker(""); 
+  //  _dirChecker(""); 
   } 
  
   public void unzip() { 
@@ -34,9 +36,10 @@ public class Decompress {
           _dirChecker(ze.getName()); 
         } else { 
           FileOutputStream fout = new FileOutputStream(_location + ze.getName()); 
-          for (int c = zin.read(); c != -1; c = zin.read()) { 
-            fout.write(c); 
-          } 
+			// replace for loop with:
+			while ((length = zin.read(buffer))>0) {
+			fout.write(buffer, 0, length);
+			}
  
           zin.closeEntry(); 
           fout.close(); 

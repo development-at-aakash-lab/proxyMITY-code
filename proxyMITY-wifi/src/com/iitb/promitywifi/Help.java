@@ -4,13 +4,10 @@ package com.iitb.promitywifi;
 
 import java.io.File;
 
-import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.Bundle;
 import android.webkit.WebView;
-import android.support.v4.app.NavUtils;
 
 public class Help extends Activity {
 	WebView helppage;
@@ -23,6 +20,7 @@ public class Help extends Activity {
         helppage = (WebView) findViewById(R.id.helpwebView);
         helppage.getSettings().setJavaScriptEnabled(true);
         //helppage.loadUrl("file:///android_asset/help.html");
+        
 if (new File("/mnt/extsd/Instructions/proxyMITY_wifi_help.html").exists())
     		
 		{    
@@ -42,7 +40,6 @@ if (new File("/mnt/extsd/Instructions/proxyMITY_wifi_help.html").exists())
         {
         	helppage.loadUrl("file:///android_asset/proxyMITY_wifi_help.html");	
         }    
-     
         
     }
 

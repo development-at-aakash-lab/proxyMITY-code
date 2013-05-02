@@ -17,7 +17,8 @@
         android:id="@+id/videoView1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" 
-        android:layout_marginTop="20dp"/>
+         android:layout_marginTop="30dp" 
+        android:layout_marginRight="45dp"        />
 
     </LinearLayout>
         

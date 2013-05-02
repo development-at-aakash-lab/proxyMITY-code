@@ -178,8 +178,7 @@ public class VideoListActivity extends Activity {
                                                 public void onClick(DialogInterface dialog, int id) {
                                                     dialog.dismiss();
                                                     help_dialog.dismiss();
-                                                 /*   String[] command = {"rm /mnt/sdcard/apl.tar.gz"};
-                                                    RunAsRoot(command);  */
+                                                
                                                     finish();
                                                     android.os.Process.killProcess(android.os.Process.myPid());
                                                 }
@@ -207,29 +206,7 @@ public class VideoListActivity extends Activity {
             help_dialog.getWindow().setAttributes(lp);
 		}
 		
-		/*else{
-			
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        	builder.setIcon(R.drawable.proxy);
-        	builder.setTitle("proxyMITY videos are not present in the tablet!!!");
-        	builder.setMessage(	"Please check whether videos are present at any one of the"+"\n"
-        	+"following locations"+"\n"+"\n"+"1. go to mnt/sdcard/proxyMITY"
-        			+"\n"+"2. go to mnt/extsd/proxyMITY")
-        	
-        	       .setCancelable(false)
-        	       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-        	           public void onClick(DialogInterface dialog, int id) {
-        	        	
-        	        	   VideoListActivity.this.finish();
-        	        	
-        	           }
-        	       });
-        	AlertDialog alert = builder.create();   
-        	alert.show();
-		
-		
-		 
-	}*/
+	
 	}
 	private void startDownload() {
     	if(isInternetOn()) {
@@ -255,7 +232,7 @@ public class VideoListActivity extends Activity {
               
             }  
     	/**
-    	 * global github link for downloading image
+    	 * global github link for downloading demo videos
     	 **/
     	String url = "http://www.it.iitb.ac.in/AakashApps/repo/proxyMITY.zip";
     	new DownloadFileAsync().execute(url);
@@ -360,7 +337,7 @@ public class VideoListActivity extends Activity {
 	
 	 class DownloadFileAsync extends AsyncTask<String, String, String> {
 	    	/**
-	    	 * download tar.gz from URL and write in '/mnt/sdcard'
+	    	 * download zip from URL and write in '/mnt/sdcard'
 	    	 **/
 	        @Override        	
 	        public void onPreExecute() {
